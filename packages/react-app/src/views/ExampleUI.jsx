@@ -17,6 +17,34 @@ export default function ExampleUI({
   writeContracts,
 }) {
   const [newPurpose, setNewPurpose] = useState("loading...");
+  const [xcUnitAmount, setXcUnitAmount] = useState(0);
+  const [recevingAddress, setReceivingAddress] = useState("");
+
+  function sendXcUnit() {
+    if (writeContracts && writeContracts.BATCH && writeContracts.XCUNITIERC20 && writeContracts.XCUNITBRIDGE) {
+      writeContracts.XCUNITIERC20.decimals().then(decimals => {
+        const xcUnitAmountRaw = utils.parseUnits(xcUnitAmount, decimals).toString();
+        const multilocationAddress = utils.hexlify(utils.concat(["0x01", recevingAddress, "0x00"]));
+        tx(
+          writeContracts.BATCH.batchAll(
+            [writeContracts.XCUNITIERC20.address, writeContracts.XCUNITBRIDGE.address],
+            [0, 0],
+            [
+              writeContracts.XCUNITIERC20.interface.encodeFunctionData("approve", [
+                writeContracts.XCUNITBRIDGE.address,
+                xcUnitAmountRaw,
+              ]),
+              writeContracts.XCUNITBRIDGE.interface.encodeFunctionData("send_tokens", [
+                ["1", [multilocationAddress]],
+                xcUnitAmountRaw,
+              ]),
+            ],
+            [],
+          ),
+        );
+      });
+    }
+  }
 
   return (
     <div>
@@ -24,6 +52,15 @@ export default function ExampleUI({
         ⚙️ Here is an example UI that displays and sets the purpose in your smart contract:
       */}
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
+        <div>
+          <h2>Send xcUnit to an Account on Moonbase Alpha Relay Chain</h2>
+          <label>xcUnit Amount: </label>
+          <Input name="xcUnitAmount" value={xcUnitAmount} onChange={e => setXcUnitAmount(e.target.value)} />
+          <label>Receiving Address (AccountId32):</label>
+          <Input name="recevingAddress" value={recevingAddress} onChange={e => setReceivingAddress(e.target.value)} />
+          <Button onClick={sendXcUnit}>Send</Button>
+        </div>
+        <Divider />
         <h2>Example UI:</h2>
         <h4>purpose: {purpose}</h4>
         <Divider />

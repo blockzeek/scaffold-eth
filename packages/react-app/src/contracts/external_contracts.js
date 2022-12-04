@@ -784,6 +784,434 @@ const DAIABI = [
   },
 ];
 
+const BATCHABI = [
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "index",
+        type: "uint256",
+      },
+    ],
+    name: "SubcallFailed",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "index",
+        type: "uint256",
+      },
+    ],
+    name: "SubcallSucceeded",
+    type: "event",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address[]",
+        name: "to",
+        type: "address[]",
+      },
+      {
+        internalType: "uint256[]",
+        name: "value",
+        type: "uint256[]",
+      },
+      {
+        internalType: "bytes[]",
+        name: "callData",
+        type: "bytes[]",
+      },
+      {
+        internalType: "uint64[]",
+        name: "gasLimit",
+        type: "uint64[]",
+      },
+    ],
+    name: "batchAll",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address[]",
+        name: "to",
+        type: "address[]",
+      },
+      {
+        internalType: "uint256[]",
+        name: "value",
+        type: "uint256[]",
+      },
+      {
+        internalType: "bytes[]",
+        name: "callData",
+        type: "bytes[]",
+      },
+      {
+        internalType: "uint64[]",
+        name: "gasLimit",
+        type: "uint64[]",
+      },
+    ],
+    name: "batchSome",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address[]",
+        name: "to",
+        type: "address[]",
+      },
+      {
+        internalType: "uint256[]",
+        name: "value",
+        type: "uint256[]",
+      },
+      {
+        internalType: "bytes[]",
+        name: "callData",
+        type: "bytes[]",
+      },
+      {
+        internalType: "uint64[]",
+        name: "gasLimit",
+        type: "uint64[]",
+      },
+    ],
+    name: "batchSomeUntilFailure",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+];
+
+const IERC20ABI = [
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "spender",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+    ],
+    name: "Approval",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+    ],
+    name: "Transfer",
+    type: "event",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "spender",
+        type: "address",
+      },
+    ],
+    name: "allowance",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "spender",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+    ],
+    name: "approve",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "who",
+        type: "address",
+      },
+    ],
+    name: "balanceOf",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "decimals",
+    outputs: [
+      {
+        internalType: "uint8",
+        name: "",
+        type: "uint8",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "name",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "symbol",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "totalSupply",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+    ],
+    name: "transfer",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+    ],
+    name: "transferFrom",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+];
+
+const XCUNITBRIDGEABI = [
+  {
+    inputs: [],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    inputs: [
+      {
+        components: [
+          {
+            internalType: "uint8",
+            name: "parents",
+            type: "uint8",
+          },
+          {
+            internalType: "bytes[]",
+            name: "interior",
+            type: "bytes[]",
+          },
+        ],
+        internalType: "struct Xtokens.Multilocation",
+        name: "destination",
+        type: "tuple",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "send_tokens",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "xTokens",
+    outputs: [
+      {
+        internalType: "contract Xtokens",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "xcUnit",
+    outputs: [
+      {
+        internalType: "contract IERC20",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "xcUnitERC20Address",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "xtokensPrecompileAddress",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+];
+
 // Mainnet DAI, Optimism and Arbitrium Rollup Contracts with local addresses
 module.exports = {
   1: {
@@ -795,6 +1223,22 @@ module.exports = {
       UNI: {
         address: "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
         abi: ERC20ABI,
+      },
+    },
+  },
+  1287: {
+    contracts: {
+      BATCH: {
+        address: "0x0000000000000000000000000000000000000808",
+        abi: BATCHABI,
+      },
+      XCUNITIERC20: {
+        address: "0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080",
+        abi: IERC20ABI,
+      },
+      XCUNITBRIDGE: {
+        address: "0x5B55F89d4fDe76de4D4b96A1618A67c24D9872Ad",
+        abi: XCUNITBRIDGEABI,
       },
     },
   },
